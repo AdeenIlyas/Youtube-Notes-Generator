@@ -9,7 +9,7 @@ def client():
 
 @pytest.fixture
 def example_url():
-    return "https://www.youtube.com/shorts/YQVBPGj7gK4"
+    return "https://www.youtube.com/watch?v=s7wmiS2mSXY"
 
 
 def test_post_request_with_valid_url(client, example_url):
