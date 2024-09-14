@@ -1,5 +1,6 @@
 youtube-transcript-api
 crewai
+crewai-tools
 python-dotenv
 youtube-search
 pytest
