@@ -9,23 +9,26 @@ on:
 jobs:
   dockerbuild:
     runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.build.outputs.image-tag }}
     steps:
       - uses: actions/checkout@v3
       - name: Build The Docker Image
-        run: docker build . --file DockerFile --tag workflow-test:$(date +%s)
+        id: build
+        run: |
+          docker build . --file DockerFile --tag workflow-test:latest
+          echo "image-tag=latest" >> $GITHUB_ENV
 
   build-and-test:
+    needs: dockerbuild
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build The Docker Image
-        run: docker build . --file DockerFile --tag workflow-test:$(date +%s)
-
-      - name: Run tests inside Docker
+      - name: Run Docker Container and Tests
         run: |
-          docker run --rm workflow-test:$(date +%s) pytest
+          docker run --rm workflow-test:latest pytest
 
   build-and-publish:
     needs: build-and-test
