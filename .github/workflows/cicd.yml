@@ -69,8 +69,8 @@ jobs:
           file: ./DockerFile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
-          build-args:
-            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          build-args: |
+            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
       - name: Image digest
         run: echo ${{ steps.build-and-publish.outputs.digest }}
