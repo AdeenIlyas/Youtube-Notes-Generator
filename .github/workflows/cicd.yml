@@ -16,7 +16,7 @@ jobs:
       - name: Build The Docker Image
         id: build
         run: |
-          docker build . --file Dockerfile --tag workflow-test:latest
+          docker build . --file DockerFile --tag workflow-test:latest
           echo "image-tag=latest" >> $GITHUB_ENV
 
   build-and-test:
