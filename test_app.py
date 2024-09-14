@@ -50,12 +50,12 @@
 ### Taking Risk
 import pytest
 from unittest.mock import patch
-from app import create_app  # Assuming your Flask app is defined in app.py
+from app import app  # Assuming your Flask app is defined in app.py
 
 # Initialize the Flask test client
 @pytest.fixture
 def client():
-    app = create_app()  # Replace with how you create your app instance
+     # Replace with how you create your app instance
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
