@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Learning Assistant</title>
+    <style>
+      .header-container {
+          display: flex;
+          align-items: center;
+      }
+     
+
+      b{
+        font-size: 25px;
+        font-family:Georgia, Times, 'Times New Roman', serif;
+      }
+      body{
+        padding:5px 5px
+      }
+      p{
+        font-family: sans-serif;
+      }
+      
+  </style>
+  </head>
+  <body>
+    
+    <div class="header-container">
+      <img src="https://t3.ftcdn.net/jpg/04/74/05/94/360_F_474059464_qldYuzxaUWEwNTtYBJ44VN89ARuFktHW.jpg" height="70px" width="auto" alt="YouTube Logo">
+      <h1>YouTube Learning Assistant</h1>
+  </div>
+
+    <p>
+      This application allows you to extract key insights from any YouTube video
+      and provides you with concise notes. Simply enter the URL of the video
+      you want to analyze, and let the AI do the rest! 🚀
+    </p>
+
+    <form action="/" method="post">
+      <label for="url"><b>Enter YouTube URL:</b></label><br /><br />
+      <input
+        type="text"
+        name="url"
+        id="url"
+        placeholder="e.g., https://www.youtube.com/watch?v=abcdefg"
+        value="{{ url }}"
+        size="50"
+      /><br /><br />
+      <input type="submit" value="Generate Notes" />
+    </form>
+
+    <br />
+
+    {% if notes_content %}
+    <h2>📄 Generated Notes</h2>
+    <p>{{ notes_content }}</p>
+    <a href="{{ url_for('download_file', filename=notes_file) }}">💾 Download Notes as Markdown</a>
+    {% endif %}
+  </body>
+</html>
