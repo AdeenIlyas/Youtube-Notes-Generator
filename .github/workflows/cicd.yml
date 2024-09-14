@@ -16,7 +16,7 @@ jobs:
       - name: Build The Docker Image
         id: build
         run: |
-          docker build . --file DockerFile --tag workflow-test:latest
+          docker build . --file Dockerfile --tag workflow-test:latest
           echo "image-tag=latest" >> $GITHUB_ENV
 
   build-and-test:
@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: List Docker Images
+        run: docker images
 
       - name: Run Docker Container and Tests
         run: |
@@ -50,7 +53,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./DockerFile
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
           build-args: |
