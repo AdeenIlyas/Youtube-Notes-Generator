@@ -1,6 +1,6 @@
 youtube-transcript-api
 crewai
-crewai-tools
+crewai-tools==0.4.26
 python-dotenv
 youtube-search
 pytest
