@@ -31,7 +31,7 @@ jobs:
 
       - name: Run Docker Container and Tests
         run: |
-          docker run --rm workflow-test:latest pytest
+          docker run --rm workflow-test:latest pytest || docker pull workflow-test:latest && docker run --rm workflow-test:latest pytest
 
   build-and-publish:
     needs: build-and-test
@@ -53,11 +53,11 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: ./DockerFile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
           build-args: |
             OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
       - name: Image digest
-        run: echo ${{ steps.build-and-publish.outputs.digest }}
+        run: echo ${{ steps.build-and_publish.outputs.digest }}
