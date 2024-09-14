@@ -1,4 +1,4 @@
-name: CI/CD for Dockerized Application
+name: CI/CD for Dockerized Flask App
 
 on:
   push:
@@ -9,33 +9,36 @@ on:
 jobs:
   dockerbuild:
     runs-on: ubuntu-latest
-    outputs:
-      image-tag: ${{ steps.build.outputs.image-tag }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build The Docker Image
-        id: build
-        run: |
-          docker build . --file DockerFile --tag workflow-test:latest
-          echo "image-tag=latest" >> $GITHUB_ENV
-
+        run: docker build . --file DockerFile --tag workflow-test:$(date +%s)
   build-and-test:
-    needs: dockerbuild
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: List Docker Images
-        run: docker images
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
 
-      - name: Run Docker Container and Tests
+      - name: Install dependencies
         run: |
-          docker run --rm workflow-test:latest pytest
+          python -m pip install --upgrade pip
+          pip install flask
+          pip install pytest
+
+      - name: Run tests
+        run: |
+          pytest
 
   build-and-publish:
     needs: build-and-test
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -56,8 +59,6 @@ jobs:
           file: ./DockerFile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
-          build-args: |
-            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
 
       - name: Image digest
         run: echo ${{ steps.build-and-publish.outputs.digest }}
