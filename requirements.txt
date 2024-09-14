@@ -1,4 +1,6 @@
 youtube-transcript-api
 crewai
 python-dotenv
-streamlit
+youtube-search
+pytest
+flask
