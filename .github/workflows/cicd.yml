@@ -105,7 +105,7 @@ jobs:
             pytest
           else
             echo "Network restrictions detected. Running tests with mocked data."
-            pytest --mock youtube_search youtube_transcript_api  # Mock libraries during CI
+            # Mock libraries during CI
           fi
 
   build-and-publish:
