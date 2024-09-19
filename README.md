@@ -7,13 +7,22 @@ YouTube Notes Generator is an AI-powered tool that allows users to input a YouTu
 
 
 Flask Application: Run the application locally as a Flask web app.
+
+
 API Endpoints: Accepts video URLs via cURL commands, returning AI-generated notes.
+
+
 Dockerized: Automatically installs dependencies, runs test cases, and builds Docker containers.
 
 
 # How to run the application:
+
 1.git clone https://github.com/yourusername/YouTube-Notes-Generator.git
+
+
 2.cd YouTube-Notes-Generator
+
+
 3.python app.py
 
 # Run using curl:
