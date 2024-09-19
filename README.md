@@ -24,6 +24,8 @@ How to run the application:
 ![Screenshot 2024-09-19 192725](https://github.com/user-attachments/assets/9d1a83ef-de15-4233-b67f-fdc5d7a1fa67)
 
 The docker image has been uploaded on dockerhub.
+
+
 1.Start docker
 2. Run the command docker pull adeen1234/flasktest-app
 3. Run the command docker run -p 5000:5000 adeen1234/flasktest-app:latest
