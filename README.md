@@ -17,13 +17,13 @@ Notes File Storage: Saves the generated notes in a file for easy access and refe
 
 # How to run the application:
 
-1.git clone https://github.com/AdeenIlyas/YouTube-Notes-Generator.git
+1. git clone https://github.com/AdeenIlyas/YouTube-Notes-Generator.git
 
 2. pip install -r requirements.txt
 
-3.cd YouTube-Notes-Generator
+3. cd YouTube-Notes-Generator
 
-4.python app.py
+4. python app.py
 
 # Run using curl:
 
