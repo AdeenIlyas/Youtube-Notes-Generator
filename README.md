@@ -27,6 +27,10 @@ The docker image has been uploaded on dockerhub.
 
 
 1.Start docker
+
+
 2. Run the command docker pull adeen1234/flasktest-app
+
+
 3. Run the command docker run -p 5000:5000 adeen1234/flasktest-app:latest
 
